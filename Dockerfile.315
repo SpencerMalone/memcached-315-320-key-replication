@@ -1,0 +1,8 @@
+FROM php:8.2-cli-bullseye
+
+RUN apt-get update && apt-get install -y libz-dev libmemcached-dev libmemcached-tools
+
+RUN pecl install memcached-3.1.5 \
+    && docker-php-ext-enable memcached
+
+ADD memtest.php /memtest.php
